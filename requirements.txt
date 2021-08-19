@@ -253,13 +253,6 @@ statsmodels @ file:///opt/concourse/worker/volumes/live/f55add71-53cb-4510-4c08-
 sympy @ file:///opt/concourse/worker/volumes/live/0bf7d347-8399-4af8-5e6f-4267d4aabdd9/volume/sympy_1618255318469/work
 tables==3.6.1
 tblib @ file:///tmp/build/80754af9/tblib_1597928476713/work
-tensorboard @ file:///home/conda/feedstock_root/build_artifacts/tensorboard_1610699261066/work/tensorboard-2.4.1-py3-none-any.whl
-tensorboard-plugin-wit @ file:///home/conda/feedstock_root/build_artifacts/tensorboard-plugin-wit_1611075653546/work/tensorboard_plugin_wit-1.8.0-py3-none-any.whl
-tensorflow @ file:///Users/uwe/miniconda3/conda-bld/tensorflow-split_1618075966251/work/tensorflow_pkg/tensorflow-2.4.0-cp38-cp38-macosx_10_9_x86_64.whl
-tensorflow-datasets==4.4.0
-tensorflow-estimator @ file:///home/conda/feedstock_root/build_artifacts/tensorflow-estimator_1610655765755/work/tensorflow_estimator-2.4.0-py2.py3-none-any.whl
-tensorflow-hub==0.12.0
-tensorflow-metadata==1.2.0
 termcolor==1.1.0
 terminado==0.9.4
 testpath @ file:///tmp/build/80754af9/testpath_1624638946665/work
