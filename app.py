@@ -5,10 +5,10 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-app.config['MYSQL_DATABASE_HOST'] = '127.0.0.1'
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'Atjdwkd0124@'
-app.config['MYSQL_DATABASE_DB'] = 'FLASK'
+app.config['MYSQL_DATABASE_HOST'] = 'us-cdbr-east-04.cleardb.com'
+app.config['MYSQL_DATABASE_USER'] = 'b7cc4f8cf5204b'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'e5bb8982'
+app.config['MYSQL_DATABASE_DB'] = 'heroku_eeb66e457ce35fc'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/goa'
