@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+
+    <title>Profile</title>
+  </head>
+  <style>
+
+    .pic {
+      border:5px solid lightskyblue;
+      width:250px;
+      height:300px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+   .name{
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+   }
+
+   .email{
+      text-align: center;
+      font-size: 25px;
+   }
+
+   .school{
+      text-align: center;
+      font-size: 25px;
+   }
+
+  .btn{
+   background-color:red;
+  }
+
+  .del-btn{
+  display: flex;
+   justify-content: center;
+  }
+
+  .h1{
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  </style>
+
+  <body>
+
+  {% if signedIn == true %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-yellow" style="background-color:#FFCB77;" >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/lessons">Lessons</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="/student_profile/{{userID}}">Profile</a>
+            <a class="nav-link" href="/teams">Teams</a>
+            <a class="nav-link" href="/events">Events</a>
+            <a class="nav-link" href="/suggestions">Suggestions</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  {% else %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-yellow" style="background-color:#FFCB77;" >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/students">Students</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+          <div class="navbar-nav">
+            <a class="nav-link" href="/mentor_suggestions">Suggestions</a>
+            <a class="nav-link" href="/">Back to Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  {% endif %}
+    
+    <!-- Images taken from: 
+    https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK3Q7BhoMbLDHed_hHII9iS_SJvv0jTiFBRyoBAtlgWwSaQUjYvXN1RhWxKuc-nvItiFQEcwqYX2g&usqp=CAU
+
+    https://i.dlpng.com/static/png/1376086-png-svg-profile-png-512_512_preview.png
+
+    https://casasanjose.org/wp-content/uploads/2020/07/woman-avatar-profile-round-icon_24640-14048-1.jpg
+
+    https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcKkr4jxij-WH9aUOAds3uX4JAwxcfaJz8vpr3OgG8uv7K0NLDa2_UZntJo_KrpPo9xXLm5-5peBA&usqp=CAU
+
+    https://www.shareicon.net/data/512x512/2016/07/26/802016_man_512x512.png
+    
+    -->
+    <div class="pic">
+      {% for s in student %}
+        <img src="{{s.5}}" width="230px" height="280px">
+      {% endfor %}
+    </div>
+
+
+    {% for s in student %}
+    <div class = 'name'>{{s.1}} {{s.2}}. {{s.3}}</div>
+    <div class = 'email'>{{s.6}}</div>
+    <div class = 'school'>{{s.4}}</div>
+    {% endfor %}
+
+    <br>
+    <br>
+    <br>
+
+    <div class="badge-box">
+      <h3>Earned Badges</h3>
+      {% for b in badge %}
+      <img src="{{b.0}}" width="50px" height="100px" >
+      {% endfor %}
+    </div>
+
+    <div class="assign-box">
+      <h3>Completed Assignments</h3>
+      {% for a in assign %}
+      <p>{{a.0}}</p>
+      {% endfor %}
+    </div>
+
+    <div class="challenge-box">
+      <h3>Completed Challenges</h3>
+      {% for c in challenge %}
+      <p>{{c.0}}: {{c.1}} %</p>
+      {% endfor %}
+    </div>
+
+  {% if signedIn != true %}
+    <div class="del-btn">
+      {% for s in student %}
+      <form method="post" action="/students/deleteUser/{{s.0}}" name = "delete" method = "POST">
+        <input class='btn' type="submit" value="Delete User">
+      </form>
+      {% endfor %}
+    </div>
+
+  {% else %}
+      <div class="del-btn">
+      {% for s in student %}
+      <button><a href="/update">Change Password</a></button>
+      </form>
+      {% endfor %}
+    </div>
+    <br>
+      <div class="del-btn">
+      {% for s in student %}
+      <button><a href="/">Log Out</a></button>
+      </form>
+      {% endfor %}
+    </div>
+
+  {% endif %}
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    -->
+  </body>
+
